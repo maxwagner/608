@@ -11,7 +11,7 @@ mortality <- mortality[, c(3,5,7,10,11)]
 colnames(mortality) <- c("Chapter", "State", "Year", "Population", "Rate")
 
 # shiny server
-function(input, output) {
+shinyServer(function(input, output) {
   
   # sr = state rate, nr = national rate
   mortalityReactive <- reactive({
@@ -47,4 +47,4 @@ function(input, output) {
                    chartArea = "{width: '60%', height: '95%'}"
                  ))
   })
-}
+})

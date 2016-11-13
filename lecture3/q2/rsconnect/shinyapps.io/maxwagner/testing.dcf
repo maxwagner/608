@@ -1,0 +1,10 @@
+name: testing
+title:
+account: maxwagner
+server: shinyapps.io
+appId: 135179
+bundleId: 602911
+url: https://maxwagner.shinyapps.io/testing/
+when: 1478038431.92801
+asMultiple: FALSE
+asStatic: FALSE

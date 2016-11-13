@@ -1,6 +1,6 @@
 library(shiny)
 
-fluidPage(
+shinyUI(fluidPage(
   
   titlePanel("Change in Mortality Rate by State"),
   
@@ -29,4 +29,4 @@ fluidPage(
       htmlOutput("gvisplot")
     )
   )
-)
+))
