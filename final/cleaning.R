@@ -20,7 +20,6 @@ for (file in files) {
   # trim letters from marks
   temp$MARK <- gsub("[a-zA-Z]", "", temp$MARK)
   
-  
   # give athletes capital names
   library(stringi)
   temp$COMPETITOR <- stri_trans_totitle(temp$COMPETITOR)
@@ -51,5 +50,7 @@ for (file in files) {
   # rbind to the recs data frame
   recs <- rbind(recs, temp)
 }
+
+
 
 write.csv(recs, "data/records.csv")

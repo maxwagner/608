@@ -1,32 +1,37 @@
-library(shiny)
+library(markdown)
 
-fluidPage(
-  
-  titlePanel("Mortality Rate by Cause and State"),
-  
-  sidebarLayout(
-    sidebarPanel(
-      selectInput("chapter", "Cause of Mortality:",
-                  c("Certain infectious and parasitic diseases",
-                    "Neoplasms",
-                    "Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism",
-                    "Endocrine, nutritional and metabolic diseases",
-                    "Mental and behavioural disorders",
-                    "Diseases of the nervous system",
-                    "Diseases of the circulatory system",
-                    "Diseases of the respiratory system",
-                    "Diseases of the digestive system",
-                    "Diseases of the skin and subcutaneous tissue",
-                    "Diseases of the musculoskeletal system and connective tissue",
-                    "Diseases of the genitourinary system",
-                    "Pregnancy, childbirth and the puerperium",
-                    "Certain conditions originating in the perinatal period",
-                    "Congenital malformations, deformations and chromosomal abnormalities",
-                    "Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified",
-                    "External causes of morbidity and mortality"))
-    ),
-    mainPanel(
-      htmlOutput("gvisplot")
+navbarPage(
+  theme = "yeti.css",
+  "Track and Field Records Over Time",
+  tabPanel(
+    "About",
+    fluidRow(
+      column(6, includeMarkdown("about.md"))
+    )
+  ),
+  tabPanel(
+    "Plots",
+    sidebarLayout(
+      sidebarPanel(
+        
+        radioButtons(
+          "plot2gender", "Gender", c("Male" = "male", "Female" = "female")
+        ),
+        
+        selectInput("event", "Pick an Event:", c("100m","200m", "400m", 
+                                                 "800m", "1500m","5000m", "10000m", 
+                                                 "4x100m", "4x400m", 
+                                                 "marathon", 
+                                                 "100mh","110mh", "400mh", 
+                                                 "long-jump", "high-jump", "triple-jump", 
+                                                 "pole-vault", 
+                                                 "javelin", "discus", "hammer","shot-put")
+        )
+        
+      ),
+      mainPanel(
+        plotOutput("plot2")
+      )
     )
   )
 )
