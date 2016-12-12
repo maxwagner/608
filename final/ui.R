@@ -17,6 +17,9 @@ navbarPage(
   ),
   tabPanel(
     "Interactive Information",
+    fluidRow(
+      column(6, includeMarkdown("about.md"))
+    ),
     sidebarLayout(
       sidebarPanel(
         
