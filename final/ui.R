@@ -10,7 +10,13 @@ navbarPage(
     )
   ),
   tabPanel(
-    "Plots",
+    "Static Information",
+    fluidRow(
+      column(6, includeMarkdown("about.md"))
+    )
+  ),
+  tabPanel(
+    "Interactive Information",
     sidebarLayout(
       sidebarPanel(
         
@@ -25,10 +31,7 @@ navbarPage(
                                                  "100mh","110mh", "400mh", 
                                                  "long-jump", "high-jump", "triple-jump", 
                                                  "pole-vault", 
-                                                 "javelin", "discus", "hammer","shot-put")
-        )
-        
-      ),
+                                                 "javelin", "discus", "hammer","shot-put"))),
       mainPanel(
         plotOutput("plot2")
       )

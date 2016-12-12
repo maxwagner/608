@@ -51,6 +51,4 @@ for (file in files) {
   recs <- rbind(recs, temp)
 }
 
-
-
 write.csv(recs, "data/records.csv")

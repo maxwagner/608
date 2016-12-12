@@ -2,6 +2,7 @@ library(tidyr)
 library(ggplot2)
 library(shiny)
 library(stringi)
+library(googleVis)
 
 # load the cleaned data frame
 records <- read.csv("data/records.csv", stringsAsFactors = FALSE)
@@ -111,8 +112,7 @@ function(input, output, session) {
       dataset_flex <- records_marathon
       scale_y = TRUE
     }
-    
-    
+
     dataset_flex <- subset(dataset_flex, dataset_flex$Event == input$event)
     dataset_flex <- subset(dataset_flex, dataset_flex$Sex == input$plot2gender)
     ggplot(data = dataset_flex) + 
@@ -120,7 +120,6 @@ function(input, output, session) {
       geom_point(aes(x = Date, y = Mark, colour = Mark),
                  size = 4,
                  alpha = .4) +
-      scale_colour_gradient(low = "black") +
       ggtitle(paste0("Event: ", stri_trans_totitle(input$event))) +
       if (scale_y == TRUE) {
         scale_y_reverse()
