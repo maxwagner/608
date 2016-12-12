@@ -2,23 +2,23 @@ library(markdown)
 
 navbarPage(
   theme = "yeti.css",
-  "Track and Field Records Over Time",
+  "Track and Field: Records and Doping",
   tabPanel(
     "About",
     fluidRow(
-      column(6, includeMarkdown("about.md"))
+      column(6, includeMarkdown("markdowns/about.md"))
     )
   ),
   tabPanel(
-    "Static Information",
+    "Static Graphics",
     fluidRow(
-      column(6, includeMarkdown("about.md"))
+      column(6, includeMarkdown("markdowns/static.md"))
     )
   ),
   tabPanel(
-    "Interactive Information",
+    "Interactive Graphics",
     fluidRow(
-      column(6, includeMarkdown("about.md"))
+      column(6, includeMarkdown("markdowns/inter.md"))
     ),
     sidebarLayout(
       sidebarPanel(
