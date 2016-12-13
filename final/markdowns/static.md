@@ -1,5 +1,3 @@
 # Static Graphics
 
 ***
-
-testing

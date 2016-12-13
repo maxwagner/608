@@ -2,7 +2,7 @@ library(tidyr)
 library(ggplot2)
 
 # load the cleaned data frame
-records <- read.csv("data/records.csv", stringsAsFactors = FALSE)
+records <- read.csv("./data/records.csv", stringsAsFactors = FALSE)
 
 # fix dates from the csv load in
 records$Date <- as.Date(records$Date, "%d-%b-%Y")

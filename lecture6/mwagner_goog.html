@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+	<!-- Scatterplots work well with the data I have, will just use the example as a template -->
+	<!-- I don't plan on using google charts in my project, so this can be basic as long as it works -->
+	<title>Google Viz for 100m Records</title>
+	<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="//www.google.com/jsapi"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="jquery.csv-0.71.js"></script>
+	<script type="text/javascript">google.load('visualization', '1', {'packages':['corechart']});</script>
+
+  <script type="text/javascript">
+  function drawChart(){
+    $.get('data/records.csv', function(csvData){
+      var memoryData = $.csv.toArrays(csvData, {
+        onParseValue: $.csv.hooks.castToScalar
+      });
+         
+      var records = new google.visualization.DataTable();
+                    records.addColumn('number', 'Time');
+                    records.addColumn('number', 'Date');
+                    records.addColumn({name:'name', type:'string', role:'tooltip'});
+	  
+      var tempArray = [];
+      for (i = 1; i < memoryData.length; i++){
+        tempArray.push([
+            memoryData[i][2], 
+            memoryData[i][1],
+            String(memoryData[i][0]) + ": Time: " + String(memoryData[i][1]) + " Date: " + String(memoryData[i][2])
+        ]);        
+      };
+
+      records.addRows(tempArray);
+      console.log(records);
+
+      var options = { title:'Track and Field: 100m Best Times',
+                      hAxis: {title: 'Date (year)', 
+                              minValue: records.getColumnRange(0).min,
+                              maxValue: records.getColumnRange(0).max
+                            },
+                      vAxis: {title: 'Time (seconds)', 
+                              minValue: records.getColumnRange(1).max, 
+                              maxValue: records.getColumnRange(1).min,
+							  direction: '-1'
+                            },
+                      tooltip: { textStyle: {color:'#000'}
+                               },  
+                      legend: 'none'
+                   }
+
+      var chart = new google.visualization.ScatterChart(document.getElementById('chart1'));
+      chart.draw(records, options);
+    })
+  };
+  drawChart();
+  </script>
+</head>
+
+<body>
+  <h3>Max Wagner - Module 6 - Google Charts Visualization</h3> 
+    <div class="row-fluid">
+        <div id='chart1' style='height:600px;'></div>
+    </div>
+</body>
+</html>
