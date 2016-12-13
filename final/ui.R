@@ -1,19 +1,31 @@
 library(markdown)
 
+# main nav
 navbarPage(
+  
+  # a nice theme from "shinythemes"
+  # https://rstudio.github.io/shinythemes/
   theme = "yeti.css",
   "Track and Field: Records and Doping",
+  
+  # tab 1
   tabPanel(
     "About",
     fluidRow(
       column(8, includeMarkdown("markdowns/about.md"))
     )
   ),
+  
+  # tab 2
   tabPanel(
     "Static Graphics",
+    
+    # row 1
     fluidRow(
       column(6, includeMarkdown("markdowns/static.md"))
     ),
+    
+    # row 2
     fluidRow(
       column(
         8,
@@ -37,11 +49,17 @@ navbarPage(
       )
     )
   ),
+  
+  # tab 3
   tabPanel(
     "Interactive Graphics",
+    
+    # row 1
     fluidRow(
       column(6, includeMarkdown("markdowns/inter.md"))
     ),
+    
+    # row 2
     fluidRow(
       column(
         10,
@@ -49,7 +67,7 @@ navbarPage(
           sidebarPanel(
             
             radioButtons(
-              "plot2gender", "Gender", c("Male" = "male", "Female" = "female")
+              "plot2gender", "Sex", c("Male" = "male", "Female" = "female")
             ),
             
             selectInput("event", "Pick an Event:", c("100m","200m", "400m", 

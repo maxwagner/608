@@ -8,7 +8,7 @@ Track and field record progression has hit a relative ceiling in human performan
 
 ### Doping and Drug Abuse
 
-It is common knowledge that doping occurs in competitive sports, but the extent to which it was practiced prior to competent monitoring is often overlooked. A more prominant example is East Germany in the late 1970's and 1980's. More recently, a state sponsored program was uncovered in Russia. The effect the abuse had goes beyond medals and records, and moves into human rights, informed consent, and other human justice problems. An extensive report on the East German doping can be found [here.](http://clinchem.aaccjnls.org/content/43/7/1262)
+It is common knowledge that doping occurs in competitive sports, but the extent to which it was practiced prior to competent monitoring is overlooked. A prominant example is East Germany in the late 1970's and 1980's. More recently, a state sponsored program was uncovered in Russia. The effect the abuse had goes beyond records, and moves into human rights, informed consent, and other human justice problems. An extensive report on the East German doping can be found [here.](http://clinchem.aaccjnls.org/content/43/7/1262)
 
 ### Data
 

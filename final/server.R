@@ -75,37 +75,36 @@ records_field <- subset(records,
 records_field$Mark <- as.numeric(records_field$Mark)
 ############################
 
-# s1
+# static1
 s1 <- subset(records_marathon, records_marathon$Event == "marathon")
 s1 <- subset(s1, s1$Sex == "male")
 #
 
-# s2
+# static2
 s2 <- subset(records_sprints, records_sprints$Event == "400mh")
 s2 <- subset(s2, s2$Sex == "male")
 #
 
-# s2
+# static3
 s3 <- subset(records_field, records_field$Event == "discus")
 s3 <- subset(s3, s3$Sex == "female")
 #
 
+# main input/output function
 function(input, output, session) {
   
-  output$s3tab <- renderTable(colnames = FALSE,{
-    t(data.frame(table(s3$Nation)))
-  })
-  
+  # static1 plot
   output$s1 <- renderPlot({
     ggplot(data = s1) + 
-      theme_minimal() +
+      theme_minimal() + # easy theming
       geom_point(aes(x = Date, y = Mark, colour = Mark),
                  size = 4,
-                 alpha = .4) +
+                 alpha = .4) + # so dots on top of each can be seen
       ggtitle(paste0("Event: ", stri_trans_totitle(s1$Event))) +
-      scale_y_reverse()
+      scale_y_reverse() # flip the y-axis
   })
   
+  # static2 plot
   output$s2 <- renderPlot({
     ggplot(data = s2) + 
       theme_minimal() +
@@ -116,6 +115,7 @@ function(input, output, session) {
       scale_y_reverse()
   })
   
+  # static3 plot
   output$s3 <- renderPlot({
     ggplot(data = s3) + 
       theme_minimal() +
@@ -125,9 +125,16 @@ function(input, output, session) {
       ggtitle(paste0("Event: ", stri_trans_totitle(s3$Event)))
   })
   
+  # static3 table
+  output$s3tab <- renderTable(colnames = FALSE,{
+    t(data.frame(table(s3$Nation)))
+  })
   
+  # render the main plot on the interactive page
   output$plot2 <- renderPlot({
     
+    # sort by event, set scale_y if needed
+    # scale_y tells the graph to flip an axis or not
     if (input$event == "100m" |
         input$event == "100mh" |
         input$event == "110mh" |
@@ -161,10 +168,12 @@ function(input, output, session) {
       dataset_flex <- records_marathon
       scale_y = TRUE
     }
-
+    
+    # subset based on the inputs taken above
     dataset_flex <- subset(dataset_flex, dataset_flex$Event == input$event)
     dataset_flex <- subset(dataset_flex, dataset_flex$Sex == input$plot2gender)
     
+    # finally create the graph
     ggplot(data = dataset_flex) + 
       theme_minimal() +
       geom_point(aes(x = Date, y = Mark, colour = Mark),
@@ -176,6 +185,7 @@ function(input, output, session) {
       }
   })
   
+  # general same idea as the graph, but with a table this time
   output$tablei1 <- renderTable(colnames = FALSE,{
     
     if (input$event == "100m" |
@@ -211,10 +221,7 @@ function(input, output, session) {
     dataset_flex <- subset(dataset_flex, dataset_flex$Event == input$event)
     dataset_flex <- subset(dataset_flex, dataset_flex$Sex == input$plot2gender)
     
+    # some nesting to make it print horizontally
     t(data.frame(table(dataset_flex$Nation)))
   })
-  
-  
-  
-  
 }
